@@ -12,7 +12,7 @@ for i=1:25
     T=FK(qt)
     rad2deg(qt);
     qn=IK(T)
-    for j=1:size(qn,1) % check for all IK solutions 
+    for j=1:size(qn,1)
         Ts=FK(qn(j,:))
         if norm(T-Ts)>1e-3
             qn(j,:)

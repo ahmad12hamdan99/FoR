@@ -17,14 +17,16 @@ int main(int argc, char** argv)
   sensor_msgs::JointState joint_state;
 
   //filling the intial state of joints
-  joint_state.name.resize(3);
-  joint_state.position.resize(3);
+  joint_state.name.resize(4);
+  joint_state.position.resize(4);
   joint_state.name[0] ="joint1";
   joint_state.name[1] ="joint2";
   joint_state.name[2] ="left_shoulder_joint";
+  joint_state.name[3] ="left_wrist_joint";
   joint_state.position[0] = 1;
   joint_state.position[1] = -1;
-  joint_state.position[2] = -0.7;
+  joint_state.position[2] = 0;
+  joint_state.position[2] = 0.2;
 
   while (ros::ok()) 
   {
@@ -33,7 +35,8 @@ int main(int argc, char** argv)
     joint_state.header.stamp = ros::Time::now();
     joint_state.position[0] += 0.05;
     joint_state.position[1] +=d2;
-    joint_state.position[2] +=0.3;
+    joint_state.position[2] +=0;
+    joint_state.position[3] += 0.7;
 
     loop_rate.sleep();
   }

@@ -76,5 +76,25 @@
   </joint>
 
 
+  <link name="left_wrist">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.2"/>
+      </geometry>
+      <origin xyz="0 0.005 0.1" rpy="0.0 0.0 0.0"/>
+      
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="left_wrist_joint" type="revolute"> 
+    <parent link="left_shoulder"/>
+    <child link="left_wrist"/>
+    <limit effort="30" velocity="1.0" lower="-1.570795" upper="1.570795" />
+    <axis xyz="0 1 0"/>
+    <origin xyz="0.0 0. 0.2" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+
   
 </robot>

@@ -10,6 +10,8 @@ int main(int argc, char** argv)
 
   ros::Rate loop_rate(3);
   //step of the joint
+  double d = 1;
+  double d1 = 1;
   double d2 = 0.05;
   double d3 = 0.05;
 
@@ -23,10 +25,10 @@ int main(int argc, char** argv)
   joint_state.name[1] ="joint2";
   joint_state.name[2] ="left_shoulder_joint";
   joint_state.name[3] ="left_wrist_joint";
-  joint_state.position[0] = 1;
-  joint_state.position[1] = -1;
+  joint_state.position[0] = 0;
+  joint_state.position[1] = 0;
   joint_state.position[2] = 0;
-  joint_state.position[2] = 0.2;
+  joint_state.position[3] = 0;
 
   while (ros::ok()) 
   {
@@ -34,9 +36,14 @@ int main(int argc, char** argv)
     pub.publish(joint_state);
     joint_state.header.stamp = ros::Time::now();
     joint_state.position[0] += 0.05;
-    joint_state.position[1] +=d2;
-    joint_state.position[2] +=0;
-    joint_state.position[3] += 0.7;
+    joint_state.position[1] +=0.5;
+
+    if (joint_state.position[2] > 1.5 || joint_state.position[2] < -1.5)
+      d = -d;
+    joint_state.position[2] += d*0.1;
+    if (joint_state.position[3] > 1.5 || joint_state.position[3] < -1.5)
+      d1 = -d1;
+    joint_state.position[3] += d1 * 0.2;
 
     loop_rate.sleep();
   }

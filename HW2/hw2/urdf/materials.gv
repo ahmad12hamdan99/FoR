@@ -1,0 +1,17 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"right_leg" [label="right_leg"];
+"top_fan" [label="top_fan"];
+"left_shoulder" [label="left_shoulder"];
+"left_wrist" [label="left_wrist"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "joint1" [label="xyz: 0 -0.155 0 \nrpy: 0 -0 0"]
+"joint1" -> "right_leg"
+"right_leg" -> "joint2" [label="xyz: 0 0 0.455 \nrpy: 0 -0 0"]
+"joint2" -> "top_fan"
+"base_link" -> "left_shoulder_joint" [label="xyz: 0 0.15 0.2 \nrpy: 0 -0 0"]
+"left_shoulder_joint" -> "left_shoulder"
+"left_shoulder" -> "left_wrist_joint" [label="xyz: 0 0 0.2 \nrpy: 0 -0 0"]
+"left_wrist_joint" -> "left_wrist"
+}
